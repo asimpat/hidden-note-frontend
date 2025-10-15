@@ -51,13 +51,15 @@ function App() {
           path="/"
           element={
             <>
-              <Navbar />
-              <div className="max-w-7xl mx-auto pt-20 px-6">
+              <div className="min-h-screen bg-slate-900">
+                <Navbar />
+                {/* <div className="max-w-7xl mx-auto pt-20 px-6"> */}
                 <Hero />
                 <Features />
                 <CTA />
+                {/* </div> */}
+                <Footer />
               </div>
-              <Footer />
             </>
           }
         />
