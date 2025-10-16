@@ -74,8 +74,16 @@ function SendMessage() {
         setSuccess(false);
       }, 5000);
     } catch (err) {
-      if (err.detail) {
-        setError(err.detail);
+      console.error("Error sending message:", err);
+
+      // ✅ Handle rate-limit error (429 Too Many Requests)
+      if (err.response && err.response.status === 429) {
+        const detail =
+          err.response.data?.detail ||
+          "You're sending messages too fast. Please wait a bit before trying again.";
+        setError(detail);
+      } else if (err.response && err.response.data?.detail) {
+        setError(err.response.data.detail);
       } else if (err.message) {
         setError(Array.isArray(err.message) ? err.message[0] : err.message);
       } else {
@@ -85,6 +93,7 @@ function SendMessage() {
       setLoading(false);
     }
   };
+
 
   if (checkingUser) {
     return (

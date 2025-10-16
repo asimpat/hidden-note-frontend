@@ -1,32 +1,24 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Copy, Trash2, Clock, CheckCircle, Search } from "lucide-react";
-import { useMessages } from "../../hooks/useMessages";
-import { getUser } from "../../services/userService";
 import { Link } from "react-router-dom";
 
-function Messages() {
+function Messages({
+  user,
+  messages,
+  count,
+  nextPage,
+  prevPage,
+  loading,
+  handleDelete,
+  handleMarkAsRead,
+  fetchMessages,
+}) {
   const [searchTerm, setSearchTerm] = useState("");
   const [filterStatus, setFilterStatus] = useState("all");
   const [sortBy, setSortBy] = useState("newest");
   const [copiedLink, setCopiedLink] = useState(false);
-  const [userSecretLink, setUserSecretLink] = useState("unknown");
 
-  const { messages, loading, handleDelete, handleMarkAsRead } = useMessages();
-
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const userData = await getUser();
-        if (userData?.secret_link) {
-          setUserSecretLink(userData.secret_link);
-        }
-      } catch (err) {
-        console.error("Failed to load user data:", err);
-      }
-    };
-    fetchUser();
-  }, []);
-
+  const userSecretLink = user?.secret_link || "unknown";
   const userLink = `http://localhost:5173/to/${userSecretLink}/`;
 
   const handleCopyLink = () => {
@@ -173,6 +165,43 @@ function Messages() {
             ))
           )}
         </div>
+        {(nextPage || prevPage) && (
+          <div className="flex justify-between items-center mt-8">
+            <button
+              onClick={() => prevPage && fetchMessages(prevPage)}
+              disabled={!prevPage}
+              className={`px-6 py-3 rounded-lg font-semibold transition-colors ${
+                prevPage
+                  ? "bg-slate-700 hover:bg-slate-600 text-white"
+                  : "bg-slate-900 text-slate-500 cursor-not-allowed"
+              }`}
+            >
+              Previous
+            </button>
+
+            <span className="text-slate-400 text-sm">
+              Showing {messages.length} of {count} messages
+            </span>
+
+            <button
+              onClick={() => nextPage && fetchMessages(nextPage)}
+              disabled={!nextPage}
+              className={`px-6 py-3 rounded-lg font-semibold transition-colors ${
+                nextPage
+                  ? "bg-slate-700 hover:bg-slate-600 text-white"
+                  : "bg-slate-900 text-slate-500 cursor-not-allowed"
+              }`}
+            >
+              Next
+            </button>
+          </div>
+        )}
+
+        {count > 0 && (
+          <p className="text-center text-slate-400 mt-8">
+            Page 1 of {Math.ceil(count / 10)}
+          </p>
+        )}
       </div>
     </section>
   );

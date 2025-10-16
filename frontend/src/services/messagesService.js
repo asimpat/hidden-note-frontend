@@ -15,9 +15,10 @@ export const sendMessage = async (secretLink, messageText) => {
 };
 
 // Get all messages for authenticated user
-export const getMessages = async (params = {}) => {
+export const getMessages = async (url = null, params = {}) => {
   try {
-    const response = await axiosInstance.get("/messages/", { params });
+    // If a full pagination URL is provided (next/previous), use it directly
+    const response = await axiosInstance.get(url || "/messages/", { params });
     return response.data;
   } catch (error) {
     throw error.response?.data || error.message;
