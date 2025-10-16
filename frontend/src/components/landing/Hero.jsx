@@ -14,6 +14,7 @@ import {
   Clock,
   CheckCircle,
 } from "lucide-react";
+import { Link } from "react-router-dom";
 
 function Hero() {
   const [copiedLink, setCopiedLink] = useState(false);
@@ -61,9 +62,12 @@ function Hero() {
             )}
           </div>
 
-          <button className="bg-amber-400 hover:bg-amber-500 text-slate-900 px-10 py-5 rounded-xl text-xl font-bold transition-all transform hover:scale-105 shadow-lg shadow-amber-400/20">
+          <Link
+            to="/signup"
+            className="bg-amber-400 hover:bg-amber-500 text-slate-900 px-10 py-5 rounded-xl text-xl font-bold transition-all transform hover:scale-105 shadow-lg shadow-amber-400/20 inline-block text-center"
+          >
             CREATE YOUR LINK NOW
-          </button>
+          </Link>
 
           <div className="flex justify-center gap-4 mt-8">
             <button className="bg-blue-600 hover:bg-blue-700 w-12 h-12 rounded-lg flex items-center justify-center transition-colors">

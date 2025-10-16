@@ -112,14 +112,14 @@ function LoginModal({ isOpen, onClose, onAuthSuccess }) {
           </div>
 
           {/* Forgot Password */}
-          <div className="flex justify-end">
+          {/* <div className="flex justify-end">
             <a
               href="#"
               className="text-amber-400 hover:text-amber-300 text-sm transition-colors"
             >
               Forgot password?
             </a>
-          </div>
+          </div> */}
 
           {/* Submit Button */}
           <button

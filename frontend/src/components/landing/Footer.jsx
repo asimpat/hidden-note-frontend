@@ -22,28 +22,28 @@ function Footer() {
         <div className="flex items-center gap-2">
           <MessageSquare className="w-6 h-6 text-amber-400" />
           <span className="text-slate-400">
-            © 2024 HiddenNote. All rights reserved.
+            © 2025 HiddenNote. All rights reserved.
           </span>
         </div>
         <div className="flex gap-6">
-          <a
+          <sapn
+            // href="#"
+            className="text-slate-400"
+          >
+            Created by Asim Patrick (Forge)
+          </sapn>
+          {/* <a
             href="#"
             className="text-slate-400 hover:text-white transition-colors"
           >
-            Privacy Policy
-          </a>
-          <a
-            href="#"
-            className="text-slate-400 hover:text-white transition-colors"
-          >
-            Terms of Service
+            Asim Patrick
           </a>
           <a
             href="#"
             className="text-slate-400 hover:text-white transition-colors"
           >
             Contact
-          </a>
+          </a> */}
         </div>
       </div>
     </footer>

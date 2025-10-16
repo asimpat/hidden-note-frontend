@@ -44,7 +44,7 @@ function Features() {
               2. Share Your Link
             </h3>
             <p className="text-slate-300">
-              Share your link on social media, forums, or anywhere you want
+              Share your link on social media, with friends, or anywhere you want
               honest feedback.
             </p>
           </div>

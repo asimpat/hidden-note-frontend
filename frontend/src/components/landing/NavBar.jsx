@@ -14,7 +14,7 @@ import {
   Clock,
   CheckCircle,
 } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { notificationService } from "../../services/notificationService";
 import { authService } from "../../services/authService";
 
@@ -57,15 +57,19 @@ function Navbar({ isLoggedIn = false, onSignOut }) {
               >
                 How It Works
               </a>
-              <a
-                href="#signin"
+              <Link
+                to="/login"
                 className="text-slate-300 hover:text-white transition-colors"
               >
                 Sign In
-              </a>
-              <button className="bg-amber-400 hover:bg-amber-500 text-slate-900 px-6 py-2 rounded-lg font-semibold transition-colors">
+              </Link>
+              <Link
+                to="/signup"
+                className="bg-amber-400 hover:bg-amber-500 text-slate-900 px-6 py-2 rounded-lg font-semibold transition-colors"
+              >
                 Get Started
-              </button>
+              </Link>
+             
             </>
           ) : (
             <>

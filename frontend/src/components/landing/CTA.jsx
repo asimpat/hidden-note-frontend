@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function CTA() {
   return (
     <section className="py-20 px-6">
@@ -8,9 +10,13 @@ function CTA() {
         <p className="text-xl text-slate-300 mb-8">
           Join thousands who trust HiddenNote for honest, anonymous feedback.
         </p>
-        <button className="bg-amber-400 hover:bg-amber-500 text-slate-900 px-10 py-5 rounded-xl text-xl font-bold transition-all transform hover:scale-105 shadow-lg shadow-amber-400/20">
+        <Link
+          to="/signup"
+          className="bg-amber-400 hover:bg-amber-500 text-slate-900 px-10 py-5 rounded-xl text-xl font-bold transition-all transform hover:scale-105 shadow-lg shadow-amber-400/20"
+        >
           GET YOUR FREE LINK
-        </button>
+        </Link>
+    
       </div>
     </section>
   );
