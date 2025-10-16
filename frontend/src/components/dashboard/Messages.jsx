@@ -180,7 +180,7 @@ function Messages({
             </button>
 
             <span className="text-slate-400 text-sm">
-              Showing {messages.length} of {count} messages
+              Showing {filteredMessages.length} of {count} messages
             </span>
 
             <button
@@ -195,12 +195,6 @@ function Messages({
               Next
             </button>
           </div>
-        )}
-
-        {count > 0 && (
-          <p className="text-center text-slate-400 mt-8">
-            Page 1 of {Math.ceil(count / 10)}
-          </p>
         )}
       </div>
     </section>
