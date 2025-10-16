@@ -26,20 +26,25 @@ function Dashboard({ onSignOut }) {
   const [activeTab, setActiveTab] = useState("messages");
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
-      <Navbar isLoggedIn={true} onSignOut={onSignOut} />
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex">
+      {/* Sidebar (fixed) */}
       <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
 
-      <main className="ml-64 pt-20 p-8">
-        <div className="max-w-6xl">
+      {/* Main Section */}
+      <div className="flex-1 ml-64 pt-20 px-8">
+        <Navbar isLoggedIn={true} onSignOut={onSignOut} />
+
+        <main className="max-w-5xl mx-auto w-full">
           {activeTab === "messages" && <Messages />}
-          {/* {activeTab === "notifications" && <Notifications />} */}
           {activeTab === "profile" && <Profile />}
-          {activeTab === "settings" && <Setting />}
-        </div>
-      </main>
+          {/* {activeTab === "settings" && <Setting />} */}
+        </main>
+      </div>
     </div>
   );
 }
 
+
 export default Dashboard;
+
+

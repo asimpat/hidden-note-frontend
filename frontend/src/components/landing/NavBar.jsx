@@ -24,23 +24,23 @@ function Navbar({ isLoggedIn = false, onSignOut }) {
   const [hasUnread, setHasUnread] = useState(false);
 
   // Check for unread messages
-  useEffect(() => {
-    const checkUnreadMessages = async () => {
-      try {
-        const data = await notificationService.getUnreadCount();
-        setHasUnread(data.count > 0);
-      } catch (error) {
-        console.error("Error checking unread messages:", error);
-      }
-    };
+  // useEffect(() => {
+  //   const checkUnreadMessages = async () => {
+  //     try {
+  //       const data = await notificationService.getUnreadCount();
+  //       setHasUnread(data.count > 0);
+  //     } catch (error) {
+  //       console.error("Error checking unread messages:", error);
+  //     }
+  //   };
 
-    if (authService.isAuthenticated()) {
-      checkUnreadMessages();
-      // Poll for updates every 30 seconds
-      const interval = setInterval(checkUnreadMessages, 30000);
-      return () => clearInterval(interval);
-    }
-  }, []);
+  //   if (authService.isAuthenticated()) {
+  //     checkUnreadMessages();
+  //     // Poll for updates every 30 seconds
+  //     const interval = setInterval(checkUnreadMessages, 30000);
+  //     return () => clearInterval(interval);
+  //   }
+  // }, []);
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-slate-900/80 backdrop-blur-sm border-b border-slate-700/50">
       <nav className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">

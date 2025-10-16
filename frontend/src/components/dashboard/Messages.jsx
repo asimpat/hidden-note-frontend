@@ -13,11 +13,6 @@ function Messages() {
 
   const { messages, loading, handleDelete, handleMarkAsRead } = useMessages();
 
-  // const handleCopyLink = () => {
-  //   navigator.clipboard.writeText("hiddennote.com/to/john_doe");
-  //   setCopiedLink(true);
-  //   setTimeout(() => setCopiedLink(false), 2000);
-  // };
   useEffect(() => {
     const fetchUser = async () => {
       try {
@@ -29,7 +24,6 @@ function Messages() {
         console.error("Failed to load user data:", err);
       }
     };
-
     fetchUser();
   }, []);
 
@@ -41,7 +35,8 @@ function Messages() {
     setTimeout(() => setCopiedLink(false), 2000);
   };
 
-  if (loading) return <p className="text-white">Loading messages...</p>;
+  if (loading)
+    return <p className="text-white text-center mt-10">Loading messages...</p>;
 
   const filteredMessages = messages
     .filter((msg) =>
@@ -56,14 +51,11 @@ function Messages() {
     )
     .sort((a, b) => (sortBy === "newest" ? b.id - a.id : a.id - b.id));
 
-    console.log("filteredMessages", filteredMessages);
-    
-
   return (
-    <div>
-      <div className="w-full px-4 md:px-0">
-        {/* Your Unique Link Section */}
-        <div className="bg-slate-800 border border-slate-700 rounded-xl p-6 mb-6">
+    <section className="py-10">
+      <div className="max-w-4xl mx-auto">
+        {/* Unique Link Section */}
+        <div className="bg-slate-800 border border-slate-700 rounded-xl p-6 mb-6 shadow-lg">
           <h2 className="text-white font-semibold mb-3">Your Unique Link</h2>
           <div className="flex items-center gap-3">
             <input
@@ -81,7 +73,8 @@ function Messages() {
             </button>
           </div>
         </div>
-        {/* Filters and Search */}
+
+        {/* Search + Filters */}
         <div className="flex flex-col md:flex-row gap-4 mb-6">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-5 h-5" />
@@ -116,40 +109,45 @@ function Messages() {
 
         {/* Messages List */}
         <div className="space-y-4">
-          {filteredMessages.map((message) => (
-            <div
-              key={message.id}
-              className={`bg-slate-800 border rounded-xl p-6 transition-colors ${
-                message.read
-                  ? "border-slate-700"
-                  : "border-amber-400/50 bg-slate-800/80"
-              }`}
-            >
-              <div className="flex items-start justify-between mb-3">
-                <div className="flex items-center gap-2">
-                  <Clock className="w-4 h-4 text-slate-400" />
-                  <span className="text-slate-400 text-sm">
-                    {new Date(message.created_at).toLocaleString()}
-                  </span>
-                  {!message.is_read && (
-                    <span className="bg-amber-400 text-slate-900 text-xs px-2 py-1 rounded-full font-semibold">
-                      New
+          {filteredMessages.length === 0 ? (
+            <p className="text-slate-400 text-center py-10">
+              No messages found.
+            </p>
+          ) : (
+            filteredMessages.map((message) => (
+              <div
+                key={message.id}
+                className={`bg-slate-800 border rounded-xl p-6 transition-colors ${
+                  message.is_read
+                    ? "border-slate-700"
+                    : "border-amber-400/50 bg-slate-800/80"
+                }`}
+              >
+                <div className="flex items-start justify-between mb-3">
+                  <div className="flex items-center gap-2">
+                    <Clock className="w-4 h-4 text-slate-400" />
+                    <span className="text-slate-400 text-sm">
+                      {new Date(message.created_at).toLocaleString()}
                     </span>
-                  )}
+                    {!message.is_read && (
+                      <span className="bg-amber-400 text-slate-900 text-xs px-2 py-1 rounded-full font-semibold">
+                        New
+                      </span>
+                    )}
+                  </div>
+                  <button
+                    onClick={() => handleDelete(message.id)}
+                    className="text-slate-400 hover:text-red-400 transition-colors"
+                  >
+                    <Trash2 className="w-5 h-5" />
+                  </button>
                 </div>
-                <button
-                  onClick={() => handleDelete(message.id)}
-                  className="text-slate-400 hover:text-red-400 transition-colors"
-                >
-                  <Trash2 className="w-5 h-5" />
-                </button>
-              </div>
-              <p className="text-white text-lg mb-3 truncate max-w-full">
-                {message.message}
-              </p>
 
-              <div className="flex items-start justify-between mb-3">
-                <div className="flex gap-2">
+                <p className="text-white text-lg mb-3 break-words">
+                  {message.message}
+                </p>
+
+                <div className="flex justify-between items-center">
                   {!message.is_read ? (
                     <button
                       onClick={() => handleMarkAsRead(message.id)}
@@ -164,21 +162,19 @@ function Messages() {
                       Read
                     </span>
                   )}
-                  <div>
-                    <Link
-                      to={`/message/${message.id}`}
-                      className="text-blue-400 hover:underline text-sm"
-                    >
-                      View Message
-                    </Link>
-                  </div>
+                  <Link
+                    to={`/message/${message.id}`}
+                    className="text-blue-400 hover:underline text-sm"
+                  >
+                    View Message
+                  </Link>
                 </div>
               </div>
-            </div>
-          ))}
+            ))
+          )}
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 

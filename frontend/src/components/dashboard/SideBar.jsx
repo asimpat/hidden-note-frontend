@@ -19,7 +19,7 @@ function Sidebar({ activeTab, setActiveTab }) {
     { id: "messages", label: "Messages", icon: MessageSquare },
     // { id: "notifications", label: "Notifications", icon: Bell },
     { id: "profile", label: "Profile", icon: User },
-    { id: "settings", label: "Settings", icon: Settings },
+    // { id: "settings", label: "Settings", icon: Settings },
   ];
 
   return (

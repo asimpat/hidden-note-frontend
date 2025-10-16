@@ -10,6 +10,7 @@ import {
   CheckCircle,
 } from "lucide-react";
 import { authService } from "../../services/authService";
+import { Link } from "react-router-dom";
 
 function SignUpModal({ isOpen, onClose, onAuthSuccess }) {
   const [formData, setFormData] = useState({
@@ -279,17 +280,20 @@ function SignUpModal({ isOpen, onClose, onAuthSuccess }) {
           <div className="text-center pt-2">
             <p className="text-slate-400">
               Already have an account?{" "}
-              <button
-                type="button"
-                onClick={() => {
-                  onClose();
-                  window.location.href = "/login";
-                }}
+              <Link
+              to="/login"
                 className="text-amber-400 hover:text-amber-300 font-semibold transition-colors"
               >
                 Sign in
-              </button>
+              </Link>
             </p>
+            <Link
+              to="/"
+              onClick={onClose}
+              className="text-amber-400 hover:text-amber-300 font-semibold transition-colors ml-4"
+            >
+              ← Home
+            </Link>
           </div>
         </div>
       </div>

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { X, Mail, Lock, Eye, EyeOff, Loader2 } from "lucide-react";
 import { authService } from "../../services/authService";
+import { Link } from "react-router-dom";
 
 function LoginModal({ isOpen, onClose, onAuthSuccess }) {
   const [formData, setFormData] = useState({
@@ -141,17 +142,20 @@ function LoginModal({ isOpen, onClose, onAuthSuccess }) {
           <div className="text-center pt-2">
             <p className="text-slate-400">
               Don’t have an account?{" "}
-              <button
-                type="button"
-                onClick={() => {
-                  onClose();
-                  window.location.href = "/signup";
-                }}
+              <Link
+              to="/signup"  
                 className="text-amber-400 hover:text-amber-300 font-semibold transition-colors"
               >
                 Sign up
-              </button>
+              </Link>
             </p>
+            <Link
+              to="/"
+              onClick={onClose}
+              className="text-amber-400 hover:text-amber-300 font-semibold transition-colors mt-2 block"
+            >
+              ← Home
+            </Link>
           </div>
         </div>
       </div>
