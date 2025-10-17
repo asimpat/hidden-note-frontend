@@ -32,7 +32,7 @@ function LoginModal({ isOpen, onClose, onAuthSuccess }) {
       onAuthSuccess();
       window.location.href = "/dashboard";
     } catch (err) {
-      setError(err.detail || "Invalid email or password");
+      setError(err.detail || "Invalid username or password");
     } finally {
       setLoading(false);
     }
