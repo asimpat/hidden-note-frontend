@@ -66,18 +66,18 @@ function App() {
         <Route
           path="/signup"
           element={
-            <PublicRoute>
+            // <PublicRoute>
               <AuthPage mode="signup" onAuthSuccess={handleAuthSuccess} />
-            </PublicRoute>
+            // </PublicRoute>
           }
         />
 
         <Route
           path="/login"
           element={
-            <PublicRoute>
+            // <PublicRoute>
               <AuthPage mode="login" onAuthSuccess={handleAuthSuccess} />
-            </PublicRoute>
+            // </PublicRoute>
           }
         />
 
@@ -85,9 +85,9 @@ function App() {
         <Route
           path="/dashboard"
           element={
-            <ProtectedRoute>
+            // <ProtectedRoute>
               <Dashboard onSignOut={handleLogout} />
-            </ProtectedRoute>
+            // </ProtectedRoute>
           }
         />
 
