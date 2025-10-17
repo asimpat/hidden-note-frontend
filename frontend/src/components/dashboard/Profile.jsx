@@ -27,7 +27,7 @@ function Profile({ user }) {
         </div>
 
         <div>
-          <label className="block text-slate-400 mb-2">Secret Link</label>
+          <label className="block text-slate-400 mb-2">Unique Link</label>
           <input
             type="text"
             value={`${window.location.origin}/to/${user.secret_link}/`}
