@@ -1,15 +1,13 @@
 import axiosInstance from "./axiosInstance";
 
-// Fetch the current logged-in user's info (including secret_link)
+// Fetch the current logged-in user's info
 export const getUser = async () => {
   try {
-    const response = await axiosInstance.get("/users/");
-    // Your backend returns { count, next, previous, results: [ { userObject } ] }
-    const user = response.data?.results?.[0];
+    const response = await axiosInstance.get("/dashboard/");
+    const user = response.data;
 
-    // Save user data in localStorage for reuse
     if (user) {
-      localStorage.setItem("user", JSON.stringify(user));
+      localStorage.setItem("dashboard", JSON.stringify(user));
     }
 
     return user;

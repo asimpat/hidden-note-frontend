@@ -8,4 +8,5 @@ export const API = {
   MESSAGE_DETAIL: (id) => `${BASE_URL}/message/${id}/`,
   SEND_MESSAGE: (secret_link) => `${BASE_URL}/message/send/${secret_link}/`,
   USERS: `${BASE_URL}/users/`,
+  DASHBOARD: `${BASE_URL}/dashboard/`,
 };
