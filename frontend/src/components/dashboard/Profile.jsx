@@ -30,7 +30,7 @@ function Profile({ user }) {
           <label className="block text-slate-400 mb-2">Secret Link</label>
           <input
             type="text"
-            value={`http://localhost:5173/to/${user.secret_link}/`}
+            value={`${window.location.origin}/to/${user.secret_link}/`}
             readOnly
             className="w-full bg-slate-900 border border-slate-600 text-white px-4 py-3 rounded-lg focus:outline-none"
           />

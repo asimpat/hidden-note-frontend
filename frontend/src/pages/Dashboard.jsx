@@ -3,13 +3,21 @@ import { getUser } from "../services/userService";
 import { useMessages } from "../hooks/useMessages";
 import Messages from "../components/dashboard/Messages";
 import Profile from "../components/dashboard/Profile";
-import Sidebar from "../components/dashboard/SideBar";
-import Navbar from "../components/landing/NavBar";
+import DashboardNavbar from "../components/dashboard/DashboardNavBar";
 
 function Dashboard({ onSignOut }) {
   const [activeTab, setActiveTab] = useState("messages");
   const [user, setUser] = useState(null);
-  const { messages, count, nextPage, prevPage,fetchMessages, loading, handleDelete, handleMarkAsRead } = useMessages();
+  const {
+    messages,
+    count,
+    nextPage,
+    prevPage,
+    fetchMessages,
+    loading,
+    handleDelete,
+    handleMarkAsRead,
+  } = useMessages();
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -24,11 +32,16 @@ function Dashboard({ onSignOut }) {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex">
-      <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
-      <div className="flex-1 ml-64 pt-20 px-8">
-        <Navbar isLoggedIn={true} onSignOut={onSignOut} />
-        <main className="max-w-5xl mx-auto w-full">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+      <DashboardNavbar
+        onSignOut={onSignOut}
+        activeTab={activeTab}
+        setActiveTab={setActiveTab}
+      />
+
+      {/* Main Content - Centered */}
+      <main className="pt-24 px-4 sm:px-6 lg:px-8 pb-12">
+        <div className="max-w-5xl mx-auto">
           {activeTab === "messages" && (
             <Messages
               user={user}
@@ -43,8 +56,8 @@ function Dashboard({ onSignOut }) {
             />
           )}
           {activeTab === "profile" && <Profile user={user} />}
-        </main>
-      </div>
+        </div>
+      </main>
     </div>
   );
 }

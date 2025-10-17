@@ -145,7 +145,7 @@ function SendMessage() {
           <p className="text-slate-400">
             to{" "}
             <span className="text-amber-400 font-semibold">
-              @{recipientUsername}
+              {recipientUsername}
             </span>
           </p>
         </div>

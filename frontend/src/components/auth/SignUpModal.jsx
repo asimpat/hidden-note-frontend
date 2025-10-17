@@ -292,7 +292,7 @@ function SignUpModal({ isOpen, onClose, onAuthSuccess }) {
               onClick={onClose}
               className="text-amber-400 hover:text-amber-300 font-semibold transition-colors ml-4"
             >
-              ← Home
+              Home
             </Link>
           </div>
         </div>

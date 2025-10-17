@@ -154,7 +154,7 @@ function LoginModal({ isOpen, onClose, onAuthSuccess }) {
               onClick={onClose}
               className="text-amber-400 hover:text-amber-300 font-semibold transition-colors mt-2 block"
             >
-              ← Home
+              Home
             </Link>
           </div>
         </div>
