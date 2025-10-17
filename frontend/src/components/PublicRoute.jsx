@@ -1,7 +1,7 @@
 import { Navigate } from "react-router-dom";
 
 function PublicRoute({ children }) {
-  const token = localStorage.getItem("accessToken");
+  const token = localStorage.getItem("access_token");
 
   // If user already logged in, redirect to dashboard
   if (token) {
