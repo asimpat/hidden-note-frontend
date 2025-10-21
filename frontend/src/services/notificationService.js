@@ -1,7 +1,6 @@
 
 
 export const notificationService = {
-
   getUnreadCount: async () => {
     try {
      
